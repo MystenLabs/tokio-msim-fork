@@ -34,7 +34,7 @@ rt = ["tokio/rt", "tokio/sync", "futures-util", "hashbrown"]
 __docs_rs = ["futures-util"]
 
 [dependencies]
-tokio = { version = "1.28.0", path = "../tokio", features = ["sync"] }
+tokio = { version = "1.28.0", path = "../tokio", package = "real_tokio", features = ["sync"] }
 bytes = "1.0.0"
 futures-core = "0.3.0"
 futures-sink = "0.3.0"
@@ -48,7 +48,7 @@ tracing = { version = "0.1.25", default-features = false, features = ["std"], op
 hashbrown = { version = "0.14.0", default-features = false, optional = true }
 
 [dev-dependencies]
-tokio = { version = "1.0.0", path = "../tokio", features = ["full"] }
+tokio = { version = "1.0.0", path = "../tokio", package = "real_tokio", features = ["full"] }
 tokio-test = { version = "0.4.0", path = "../tokio-test" }
 tokio-stream = { version = "0.1", path = "../tokio-stream" }
 
