@@ -1,5 +1,5 @@
 [package]
-name = "tokio"
+name = "real_tokio"
 # When releasing to crates.io:
 # - Remove path dependencies
 # - Update doc url
