@@ -4,7 +4,7 @@ use crate::runtime::coop;
 use std::cell::Cell;
 
 #[cfg(any(feature = "rt", feature = "macros", feature = "time"))]
-use crate::util::rand::FastRand;
+use crate::util::rand::{FastRand, RngSeed};
 
 cfg_rt! {
     mod blocking;
@@ -132,6 +132,15 @@ pub(crate) fn thread_rng_n(n: u32) -> u32 {
         let ret = rng.fastrand_n(n);
         ctx.rng.set(Some(rng));
         ret
+    })
+}
+
+#[cfg(any(feature = "rt", feature = "macros"))]
+pub(crate) fn reset_rng(seed: RngSeed) {
+    CONTEXT.with(|ctx| {
+        let mut rng = ctx.rng.get().unwrap_or_else(FastRand::new);
+        rng.replace_seed(seed);
+        ctx.rng.set(Some(rng));
     })
 }
 
