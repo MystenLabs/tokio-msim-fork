@@ -25,3 +25,14 @@ pub mod runtime_task {
         Id::next()
     }
 }
+
+/// expose ability to reset internal rng
+pub mod util {
+    use crate::runtime::context::reset_rng as reset;
+    use crate::util::rand::RngSeed;
+
+    /// reset the rng in src/runtime/context.rs
+    pub fn reset_rng(seed: u64) {
+        reset(RngSeed::from_u64(seed));
+    }
+}
